@@ -101,7 +101,13 @@ function onClickItem(e){
 }
 
 function checkDublicate(item){
+    item=item.toLowerCase();
     const itemsFromStorage=getItemFromStorage();
+    let i=0;
+    while(i<itemsFromStorage.length){
+        itemsFromStorage[i]=itemsFromStorage[i].toLowerCase();
+        i=i+1;
+    }
     return itemsFromStorage.includes(item);
 }
 
