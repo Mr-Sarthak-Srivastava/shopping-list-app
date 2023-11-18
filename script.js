@@ -167,17 +167,29 @@ function checkUI(){
 checkUI();
 
 function onInput(e){
-    const value=e.target.value.toLowerCase();
-    document.querySelectorAll('li').forEach((list) => list.style.display='block');
-    let i=0;
-    while(i<itemList.children.length){
-        if(itemList.children[i].innerText.slice(0,e.target.value.length).toLowerCase()===value){
-            i=i+1;
-            continue;
+    const items=itemList.querySelectorAll('li');
+    const text=e.target.value.toLowerCase();
+
+    items.forEach((item) => {
+        const itemName=item.firstChild.textContent.toLowerCase();
+
+        if(itemName.indexOf(text)!=-1){
+            item.style.display='flex';
+        }else{
+            item.style.display='none';
         }
-        itemList.children[i].style.display='none';
-        i=i+1;
-    }
+    });
+    // const value=e.target.value.toLowerCase();
+    // document.querySelectorAll('li').forEach((list) => list.style.display='flex');
+    // let i=0;
+    // while(i<itemList.children.length){
+    //     if(itemList.children[i].innerText.slice(0,e.target.value.length).toLowerCase()===value){
+    //         i=i+1;
+    //         continue;
+    //     }
+    //     itemList.children[i].style.display='none';
+    //     i=i+1;
+    // }
 }
 document.querySelector('#filter').addEventListener('input', onInput);
 
